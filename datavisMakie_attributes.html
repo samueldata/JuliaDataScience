@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content="Jose Storopoli" />
+  <meta name="author" content="Rik Huijzer" />
+  <meta name="author" content="Lazaro Alonso" />
+  <title>Attributes - Julia Data Science</title>
+  <link rel="shortcut icon" type="image/png" href="/favicon.png"/>
+  <link rel="stylesheet" href="/style.css"/>
+    <script src="/mousetrap.min.js"></script>
+    <!-- TODO: Add url_prefix. -->
+  <style>
+  @font-face {
+    font-family: JuliaMono-Regular;
+    src: url("/JuliaMono-Regular.woff2");
+  }
+  </style>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+  <link rel="stylesheet" href="/github.min.css">
+<script src="/highlight.min.js"></script>
+<script src="/julia.min.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', (event) => {
+    document.querySelectorAll('pre').forEach((el) => {
+        hljs.highlightElement(el);
+    });
+});
+</script>
+ 
+</head>
+<body>
+<script>
+function click_next() {
+  var next = document.getElementById('nav-next');
+  next.firstElementChild.nextElementSibling.click();
+}
+function click_prev() {
+  var prev = document.getElementById('nav-prev');
+  prev.firstElementChild.click();
+}
+Mousetrap.bind('right', click_next);
+Mousetrap.bind('h', click_prev);
+Mousetrap.bind('left', click_prev);
+Mousetrap.bind('l', click_next);
+</script>
+
+<div class="books-container">
+<aside class="books-menu">
+<input type="checkbox" id="menu">
+<label for="menu">☰</label>
+<div class="books-title">
+<a href="/">Julia Data Science</a>
+</div><br />
+<span class="books-subtitle">
+
+</span>
+<div class="books-menu-content">
+<li><a class="menu-level-1" href="/preface"><b>1</b> Prefácio</a></li>
+<li><a class="menu-level-2" href="/why_data_science"><b>1.1</b> O que é Ciência de Dados?</a></li>
+<li><a class="menu-level-2" href="/engineering"><b>1.2</b> Engenharia de software</a></li>
+<li><a class="menu-level-2" href="/agradecimentos"><b>1.3</b> Agradecimentos</a></li>
+<li><a class="menu-level-1" href="/why_julia"><b>2</b> Why Julia?</a></li>
+<li><a class="menu-level-2" href="/non-programmers"><b>2.1</b> For Non-Programmers</a></li>
+<li><a class="menu-level-2" href="/programmers"><b>2.2</b> For Programmers</a></li>
+<li><a class="menu-level-2" href="/julia_accomplish"><b>2.3</b> What Julia Aims to Accomplish?</a></li>
+<li><a class="menu-level-2" href="/julia_wild"><b>2.4</b> Julia in the Wild</a></li>
+<li><a class="menu-level-1" href="/julia_basics"><b>3</b> Julia Basics</a></li>
+<li><a class="menu-level-2" href="/syntax"><b>3.1</b> Language Syntax</a></li>
+<li><a class="menu-level-2" href="/data_structures"><b>3.2</b> Native Data Structures</a></li>
+<li><a class="menu-level-2" href="/filesystem"><b>3.3</b> Filesystem</a></li>
+<li><a class="menu-level-2" href="/standardlibrary"><b>3.4</b> Julia Standard Library</a></li>
+<li><a class="menu-level-1" href="/dataframes"><b>4</b> DataFrames.jl</a></li>
+<li><a class="menu-level-2" href="/load_save"><b>4.1</b> Load and Save Files</a></li>
+<li><a class="menu-level-2" href="/index-and-summarize"><b>4.2</b> Index and Summarize</a></li>
+<li><a class="menu-level-2" href="/filter_subset"><b>4.3</b> Filter and Subset</a></li>
+<li><a class="menu-level-2" href="/select"><b>4.4</b> Select</a></li>
+<li><a class="menu-level-2" href="/missing_data"><b>4.5</b> Types and Missing Data</a></li>
+<li><a class="menu-level-2" href="/join"><b>4.6</b> Join</a></li>
+<li><a class="menu-level-2" href="/variable-transformations"><b>4.7</b> Variable Transformations</a></li>
+<li><a class="menu-level-2" href="/groupby_combine"><b>4.8</b> Groupby and Combine</a></li>
+<li><a class="menu-level-2" href="/df_performance"><b>4.9</b> Performance</a></li>
+<li><a class="menu-level-1" href="/DataVisualizationMakie"><b>5</b> Data Visualization with Makie.jl</a></li>
+<li><a class="menu-level-2" href="/cairomakie"><b>5.1</b> CairoMakie.jl</a></li>
+<li><a class="menu-level-2" href="/datavisMakie_attributes"><b>5.2</b> Attributes</a></li>
+<li><a class="menu-level-2" href="/themes"><b>5.3</b> Themes</a></li>
+<li><a class="menu-level-2" href="/using-latexstrings.jl"><b>5.4</b> Using LaTeXStrings.jl</a></li>
+<li><a class="menu-level-2" href="/makie_colors"><b>5.5</b> Colors and Colormaps</a></li>
+<li><a class="menu-level-2" href="/makie_layouts"><b>5.6</b> Layouts</a></li>
+<li><a class="menu-level-2" href="/glmakie"><b>5.7</b> GLMakie.jl</a></li>
+<li><a class="menu-level-1" href="/appendix"><b>6</b> Appendix</a></li>
+<li><a class="menu-level-2" href="/appendix_pkg"><b>6.1</b> Packages Versions</a></li>
+<li><a class="menu-level-2" href="/notation"><b>6.2</b> Notation</a></li>
+<li><a class="menu-level-1" href="/references"><b></b> References</a></li>
+</div>
+</aside>
+
+<div class="books-content">
+<h2 data-number="5.2" id="sec:datavisMakie_attributes"><span class="header-section-number">5.2</span> Attributes</h2>
+<p>A custom plot can be created by using <code>attributes</code>. The attributes can be set through keyword arguments. A list of <code>attributes</code> for every plotting object can be viewed via:</p>
+<pre class="language-julia"><code>fig, ax, pltobj = scatterlines(1:10)
+pltobj.attributes</code></pre>
+<pre class="output"><code>Attributes with 14 entries:
+  color =&gt; black
+  colormap =&gt; viridis
+  colorrange =&gt; Automatic()
+  inspectable =&gt; true
+  linestyle =&gt; nothing
+  linewidth =&gt; 1.5
+  marker =&gt; Circle{T} where T
+  markercolor =&gt; black
+  markercolormap =&gt; viridis
+  markercolorrange =&gt; Automatic()
+  markersize =&gt; 9
+  model =&gt; Float32[1.0 0.0 0.0 0.0; 0.0 1.0 0.0 0.0; 0.0 0.0 1.0 0.0; 0.0 0.0 0.0 1.0]
+  strokecolor =&gt; black
+  strokewidth =&gt; 0</code></pre>
+<p>Or as a <code>Dict</code> calling <code>pltobject.attributes.attributes</code>.</p>
+<p>Asking for help in the <code>REPL</code> as <code>?lines</code> or <code>help(lines)</code> for any given plotting function will show you their corresponding attributes plus a short description on how to use that specific function. For example, for <code>lines</code>:</p>
+<pre class="language-julia"><code>help(lines)</code></pre>
+<pre class="output"><code>  lines(positions)
+  lines(x, y)
+  lines(x, y, z)
+
+  Creates a connected line plot for each element in (x, y, z), (x, y) or
+  positions.
+
+  │ Tip
+  │
+  │  You can separate segments by inserting NaNs.
+
+  lines has the following function signatures:
+
+    (Vector, Vector)
+    (Vector, Vector, Vector)
+    (Matrix)
+
+  Available attributes for Lines{T} where T are:
+
+    ambient
+    color
+    colormap
+    colorrange
+    cycle
+    diffuse
+    inspectable
+    lightposition
+    linestyle
+    linewidth
+    nan_color
+    overdraw
+    shininess
+    specular
+    ssao
+    transparency
+    visible</code></pre>
+<p>Not only the plot objects have attributes, also the <code>Axis</code> and <code>Figure</code> objects do. For example, for Figure, we have <code>backgroundcolor</code>, <code>resolution</code>, <code>font</code> and <code>fontsize</code> and the <code>figure_padding</code> which changes the amount of space around the figure content, see the grey area in the plot, Figure (Figure <a href="#fig:custom_plot">5</a>). It can take one number for all sides, or a tuple of four numbers for left, right, bottom and top.</p>
+<p><code>Axis</code> has a lot more, some of them are <code>backgroundcolor</code>, <code>xgridcolor</code> and <code>title</code>. For a full list just type <code>help(Axis)</code>.</p>
+<p>Hence, for our next plot we will call several attributes at once as follows:</p>
+<pre class="language-julia"><code>lines(1:10, (1:10).^2; color=:black, linewidth=2, linestyle=:dash,
+    figure=(; figure_padding=5, resolution=(600, 400), font=&quot;sans&quot;,
+        backgroundcolor=:grey90, fontsize=16),
+    axis=(; xlabel=&quot;x&quot;, ylabel=&quot;x²&quot;, title=&quot;title&quot;,
+        xgridstyle=:dash, ygridstyle=:dash))
+current_figure()</code></pre>
+<figure>
+<img src="/im/custom_plot.svg" id="fig:custom_plot" style="width:60.0%" alt="Figure 5: Custom plot." /><figcaption aria-hidden="true">Figure 5: Custom plot.</figcaption>
+</figure>
+<p>This example has already most of the attributes that most users will normally use. Probably, a <code>legend</code> will also be good to have. Which for more than one function will make more sense. So, let’s <code>append</code> another mutation <code>plot object</code> and add the corresponding legends by calling <code>axislegend</code>. This will collect all the <code>labels</code> you might have passed to your plotting functions and by default will be located in the right top position. For a different one, the <code>position=:ct</code> argument is called, where <code>:ct</code> means let’s put our label in the <code>center</code> and at the <code>top</code>, see Figure Figure <a href="#fig:custom_plot_leg">6</a>:</p>
+<pre class="language-julia"><code>lines(1:10, (1:10).^2; label=&quot;x²&quot;, linewidth=2, linestyle=nothing,
+    figure=(; figure_padding=5, resolution=(600, 400), font=&quot;sans&quot;,
+        backgroundcolor=:grey90, fontsize=16),
+    axis=(; xlabel=&quot;x&quot;, title=&quot;title&quot;, xgridstyle=:dash,
+        ygridstyle=:dash))
+scatterlines!(1:10, (10:-1:1).^2; label=&quot;Reverse(x)²&quot;)
+axislegend(&quot;legend&quot;; position=:ct)
+current_figure()</code></pre>
+<figure>
+<img src="/im/custom_plot_leg.svg" id="fig:custom_plot_leg" style="width:60.0%" alt="Figure 6: Custom plot legend." /><figcaption aria-hidden="true">Figure 6: Custom plot legend.</figcaption>
+</figure>
+<p>Other positions are also available by combining <code>left(l), center(c), right(r)</code> and <code>bottom(b), center(c), top(t)</code>. For instance, for left top, use <code>:lt</code>.</p>
+<p>However, having to write this much code just for two lines is cumbersome. So, if you plan on doing a lot of plots with the same general aesthetics, then setting a theme will be better. We can do this with <code>set_theme!()</code> as the following example illustrates.</p>
+<p>Plotting the previous figure should take the new default settings defined by <code>set_theme!(kwargs)</code>:</p>
+<pre class="language-julia"><code>set_theme!(; resolution=(600, 400),
+    backgroundcolor=(:orange, 0.5), fontsize=16, font=&quot;sans&quot;,
+    Axis=(backgroundcolor=:grey90, xgridstyle=:dash, ygridstyle=:dash),
+    Legend=(bgcolor=(:red, 0.2), framecolor=:dodgerblue))
+lines(1:10, (1:10).^2; label=&quot;x²&quot;, linewidth=2, linestyle=nothing,
+    axis=(; xlabel=&quot;x&quot;, title=&quot;title&quot;))
+scatterlines!(1:10, (10:-1:1).^2; label=&quot;Reverse(x)²&quot;)
+axislegend(&quot;legend&quot;; position=:ct)
+current_figure()
+set_theme!()
+caption = &quot;Set theme example.&quot;</code></pre>
+<figure>
+<img src="/im/setTheme.svg" id="fig:setTheme" style="width:60.0%" alt="Figure 7: Set theme example." /><figcaption aria-hidden="true">Figure 7: Set theme example.</figcaption>
+</figure>
+<p>Note that the last line is <code>set_theme!()</code>, which will reset the default settings of Makie. For more on <code>themes</code> please go to Section <a href="/themes#sec:themes">5.3</a>.</p>
+<p>Before moving on into the next section, it’s worthwhile to see an example where an <code>array</code> of attributes are passed at once to a plotting function. For this example, we will use the <code>scatter</code> plotting function to do a bubble plot.</p>
+<p>The data for this could be an <code>array</code> with 100 rows and 3 columns, here we generated these at random from a normal distribution. Here, the first column could be the positions in the <code>x</code> axis, the second one the positions in <code>y</code> and the third one an intrinsic associated value for each point. The later could be represented in a plot by a different <code>color</code> or with a different marker size. In a bubble plot we can do both.</p>
+<pre class="language-julia"><code>using Random: seed!
+seed!(28)
+xyvals = randn(100, 3)
+xyvals[1:5, :]</code></pre>
+<pre class="output"><code>5×3 Matrix{Float64}:
+ -0.294668  1.27304    1.20005
+ -0.8177    1.28339   -0.408239
+ -0.936189  1.50032    1.65924
+ -0.334106  0.395313  -1.4814
+  1.81839   0.351304   0.261416</code></pre>
+<p>Next, the corresponding plot can be seen in Figure <a href="#fig:bubble">8</a>:</p>
+<pre class="language-julia"><code>fig, ax, pltobj = scatter(xyvals[:, 1], xyvals[:, 2]; color=xyvals[:, 3],
+    label=&quot;Bubbles&quot;, colormap=:plasma, markersize=15 * abs.(xyvals[:, 3]),
+    figure=(; resolution=(600, 400)), axis=(; aspect=DataAspect()))
+limits!(-3, 3, -3, 3)
+Legend(fig[1, 2], ax, valign=:top)
+Colorbar(fig[1, 2], pltobj, height=Relative(3 / 4))
+fig
+caption = &quot;Bubble plot.&quot;</code></pre>
+<figure>
+<img src="/im/bubble.svg" id="fig:bubble" style="width:60.0%" alt="Figure 8: Bubble plot." /><figcaption aria-hidden="true">Figure 8: Bubble plot.</figcaption>
+</figure>
+<p>where we have decomposed the tuple <code>FigureAxisPlot</code> into <code>fig, ax, pltobj</code>, in order to be able to add a <code>Legend</code> and <code>Colorbar</code> outside of the plotted object. We will discuss layout options in more detail in Section <a href="/makie_layouts#sec:makie_layouts">5.6</a>.</p>
+<p>We have done some basic but still interesting examples to show how to use <code>Makie.jl</code> and by now you might be wondering: what else can we do? What are all the possible plotting functions available in <code>Makie.jl</code>? To answer this question, a <em>cheat sheet</em> is shown in Figure <a href="#fig:cheat_sheet_cairomakie">9</a>. These work especially well with <code>CairoMakie.jl</code> backend.</p>
+<figure>
+<img src="images/makiePlottingFunctionsHide.png" id="fig:cheat_sheet_cairomakie" alt="Figure 9: Plotting functions: Cheat Sheet. Output given by Cairomakie." /><figcaption aria-hidden="true">Figure 9: Plotting functions: Cheat Sheet. Output given by Cairomakie.</figcaption>
+</figure>
+<p>For completeness, in Figure <a href="#fig:cheat_sheet_glmakie">10</a>, we show the corresponding functions <em>cheat sheet</em> for <code>GLMakie.jl</code>, which supports mostly 3D plots. Those will be explained in detail in Section <a href="/glmakie#sec:glmakie">5.7</a>.</p>
+<figure>
+<img src="images/GLMakiePlottingFunctionsHide.png" id="fig:cheat_sheet_glmakie" alt="Figure 10: Plotting functions: Cheat Sheet. Output given by GLMakie." /><figcaption aria-hidden="true">Figure 10: Plotting functions: Cheat Sheet. Output given by GLMakie.</figcaption>
+</figure>
+<p>Now, that we have an idea of all the things we can do, let’s go back and continue with the basics. It’s time to learn how to change the general appearance of our plots.</p>
+
+
+<div class="bottom-nav">
+    <p id="nav-prev" style="text-align: left;">
+        <a class="menu-level-2" href="/cairomakie"><b>5.1</b> CairoMakie.jl</a> <kbd>←</kbd>
+        <span id="nav-next" style="float: right;">
+            <kbd>→</kbd> <a class="menu-level-2" href="/themes"><b>5.3</b> Themes</a>
+        </span>
+    </p>
+</div>
+
+
+<div class="license">
+    <br/>
+  <br/>
+  <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a>
+    Jose Storopoli, Rik Huijzer, Lazaro Alonso
+</div>
+</div>
+</div>
+</body>
+</html>
